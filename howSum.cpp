@@ -17,11 +17,13 @@ bool howSum(int target, vector<int>numbers, unordered_map<int, vector<int>> &mem
     for(int x:numbers){
         if((target-x) == 0) 
         {
-            memo[0].push_back(x);
+            memo[target]={x};
             return true;
             
         }else if(howSum(target-x, numbers, memo)){ 
-          memo[0].push_back(x);  
+          vector<int> temp(memo[target-x].begin(), memo[target-x].end());
+          memo[target]= temp;
+          memo[target].push_back(x);  
           return true;
        }
     }
@@ -29,3 +31,4 @@ bool howSum(int target, vector<int>numbers, unordered_map<int, vector<int>> &mem
     memo[target].push_back(-1);
       return false;
 }
+
