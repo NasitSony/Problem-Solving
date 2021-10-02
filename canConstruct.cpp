@@ -16,6 +16,6 @@ bool canConstruct(string target, unordered_set<string> &word_break, unordered_ma
         }
         
     }
-    
+     memo[target] = false;
     return false;
 }
