@@ -1,22 +1,20 @@
 int bestSum(int target, vector<int> numbers){
-    unordered_map<int, vector<int>> dp;
-    dp[0] = {};
+    unordered_map<int, int> dp;
+    dp[0] = 0;
     
     for(int i = 0;  i < target+1; i++){
         if(dp.find(i) != dp.end()){
             for(int num:numbers){
-                  vector<int> temp = dp[i];
-                temp.push_back(num);
                 if(dp.find(i+num) == dp.end())
-                      dp[i+num]=temp;
+                      dp[i+num]=dp[i]+1;
                 else{
-                    if(dp[i+num].size()>temp.size())
-                       dp[i+num] = temp;
+                    if(dp[i+num]>(dp[i]+1))
+                       dp[i+num] = dp[i]+1;
                 }          
               }
         }
     } 
-    if(dp.find(dp.size()-1) != dp.end())
-       return dp[target].size();
+    if(dp.find(target) != dp.end())
+       return dp[target];
     return 0;
 }
