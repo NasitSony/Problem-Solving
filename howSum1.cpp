@@ -11,7 +11,7 @@ vector<int> howSum(int target, vector<int> numbers){
               }
         }
     } 
-    if(dp.find(dp.size()-1) != dp.end())
+    if(dp.find(target) != dp.end())
        return dp[target];
     return {};
 }
